@@ -1,70 +1,103 @@
-const platformItems = [
+"use client";
+import { useState } from "react";
+
+const tabs = [
   {
-    icon: "🍕",
-    title: "Menu Management",
-    description: "Build and update your menu in minutes. Control prices, items and categories instantly.",
+    label: "Online ordering",
+    emoji: "🖥️",
+    content: {
+      headline: "Your own branded online store, zero commissions.",
+      body: "We build and manage your custom online ordering website so customers order directly from you — keeping 100% of the revenue in your pocket.",
+    },
   },
   {
-    icon: "📊",
-    title: "Order Dashboard",
-    description: "See all orders in one place — online, phone, collection and delivery — in real time.",
+    label: "Phone order taking",
+    emoji: "📞",
+    content: {
+      headline: "Never miss a call or an order again.",
+      body: "Our team answers every phone call for your pizzeria, takes the order, and enters it into your system — 24/7.",
+    },
   },
   {
-    icon: "🖥️",
-    title: "POS Integration",
-    description: "Connects seamlessly with your existing point-of-sale system. No double entry.",
+    label: "Marketing services",
+    emoji: "📣",
+    content: {
+      headline: "Bring customers back automatically.",
+      body: "We run SMS campaigns, email blasts, and social ads so you can focus on making great pizza while we fill the seats.",
+    },
   },
   {
-    icon: "📍",
-    title: "Driver Tracking",
-    description: "Live GPS tracking for every driver. Customers see their pizza moving in real time.",
+    label: "Branded pizza boxes",
+    emoji: "📦",
+    content: {
+      headline: "Custom branded boxes at wholesale prices.",
+      body: "Every order is a marketing opportunity. We supply high-quality, custom-printed boxes that make your brand unforgettable.",
+    },
   },
   {
-    icon: "💬",
-    title: "SMS Marketing",
-    description: "Send targeted promotions to past customers. Average 4× ROI on every campaign.",
+    label: "Customer support",
+    emoji: "🎧",
+    content: {
+      headline: "We handle customer issues so you don't have to.",
+      body: "Refunds, complaints, late orders — our team resolves customer issues professionally, protecting your reputation.",
+    },
   },
   {
-    icon: "⭐",
-    title: "Loyalty System",
-    description: "Built-in points and rewards to keep customers coming back again and again.",
+    label: "Community",
+    emoji: "🤝",
+    content: {
+      headline: "A network of 15,000+ pizzeria owners.",
+      body: "Get access to an exclusive community of independent pizzeria owners sharing tips, suppliers, and success stories.",
+    },
   },
 ];
 
 export default function Platform() {
+  const [active, setActive] = useState(0);
+
   return (
-    <section id="platform" className="bg-gray-50 py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-red-600 text-sm font-medium mb-4">
-            Platform
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-            A complete platform for{" "}
-            <span className="text-red-600">modern pizzerias</span>
-          </h2>
-          <p className="mt-4 text-lg text-gray-500">
-            Every tool you need to run, grow, and delight — under one roof.
-          </p>
+    <section className="bg-white py-16 border-t border-gray-100">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-10">
+          Explore the jobs we do for Slice family members.
+        </h2>
+
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-0 border-b border-gray-200 mb-8">
+          {tabs.map((tab, i) => (
+            <button
+              key={tab.label}
+              onClick={() => setActive(i)}
+              className={`px-4 py-3 text-sm font-semibold transition-colors whitespace-nowrap ${
+                active === i
+                  ? "border-b-2 border-black text-black"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {platformItems.map((item) => (
-            <div
-              key={item.title}
-              className="group bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md hover:border-red-100 transition-all duration-300 flex items-start gap-4"
+        {/* Tab content */}
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">
+              {tabs[active].content.headline}
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              {tabs[active].content.body}
+            </p>
+            <a
+              href="#"
+              className="inline-block mt-6 bg-[#FFC300] text-black font-extrabold uppercase tracking-widest text-xs px-6 py-3 hover:opacity-90 transition-opacity"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-red-50 group-hover:bg-red-100 flex items-center justify-center text-xl transition-colors">
-                {item.icon}
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900">{item.title}</h3>
-                <p className="mt-1 text-sm text-gray-500 leading-relaxed">{item.description}</p>
-              </div>
-            </div>
-          ))}
+              Learn More
+            </a>
+          </div>
+          <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#FFC300]/30 to-orange-200 aspect-video flex items-center justify-center">
+            <span className="text-7xl">{tabs[active].emoji}</span>
+          </div>
         </div>
       </div>
     </section>

@@ -1,55 +1,30 @@
-const footerLinks = {
-  Product: ["Ordering", "Marketing", "Delivery", "Platform"],
-  Pricing: ["Starter", "Growth", "Enterprise", "Compare Plans"],
-  Resources: ["Blog", "Docs", "API", "Status"],
-  Company: ["About", "Careers", "Contact", "Press"],
-};
-
 export default function Footer() {
   return (
-    <footer id="about" className="bg-gray-900 text-gray-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-          {/* Logo + tagline */}
-          <div className="md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-3">
-              <span className="text-2xl">🍕</span>
-              <span className="font-extrabold text-xl text-white">
-                Pizz<span className="text-red-500">App</span>
-              </span>
-            </a>
-            <p className="text-sm leading-relaxed">
-              The all-in-one platform for independent pizzerias to grow, sell
-              and delight customers.
-            </p>
-            <div className="flex gap-3 mt-5">
-              {["𝕏", "in", "f"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors"
-                >
-                  {social}
-                </a>
-              ))}
+    <footer className="bg-[#111111] text-gray-400 pt-12 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+          {/* Logo col */}
+          <div className="col-span-2 md:col-span-1">
+            <div className="bg-[#FFC300] text-black font-extrabold text-sm px-3 py-1.5 rounded tracking-widest uppercase inline-block mb-4">
+              SLICE
             </div>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              The platform built for independent pizzeria owners.
+            </p>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                {category}
-              </h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
+          {[
+            { heading: "Product", links: ["Online Ordering", "Phone Order Taking", "Marketing", "Branded Boxes"] },
+            { heading: "Company", links: ["About", "Careers", "Press", "Blog"] },
+            { heading: "Resources", links: ["Case Studies", "Help Center", "API Docs", "Status"] },
+            { heading: "Legal", links: ["Privacy Policy", "Terms of Service", "Cookie Policy"] },
+          ].map((col) => (
+            <div key={col.heading}>
+              <p className="text-white font-bold text-sm uppercase tracking-wider mb-3">{col.heading}</p>
+              <ul className="space-y-2">
+                {col.links.map((link) => (
                   <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm hover:text-red-400 transition-colors"
-                    >
-                      {link}
-                    </a>
+                    <a href="#" className="text-sm hover:text-white transition-colors">{link}</a>
                   </li>
                 ))}
               </ul>
@@ -57,20 +32,9 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Legal row */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm">© 2024 PizzApp. All rights reserved.</p>
-          <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors">
-              Terms
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Cookies
-            </a>
-          </div>
+        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-600">© 2024 Slice. All rights reserved.</p>
+          <p className="text-xs text-gray-600">Built for independent pizzeria owners everywhere.</p>
         </div>
       </div>
     </footer>
